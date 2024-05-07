@@ -1,0 +1,106 @@
+{
+ "actions": [],
+ "allow_rename": 1,
+ "creation": "2024-05-06 00:56:25.918107",
+ "doctype": "DocType",
+ "engine": "InnoDB",
+ "field_order": [
+  "section_break_ub9k",
+  "first_name",
+  "last_name",
+  "birthday_date",
+  "identity",
+  "parent_name",
+  "parent_last",
+  "offer",
+  "number",
+  "email",
+  "password"
+ ],
+ "fields": [
+  {
+   "fieldname": "section_break_ub9k",
+   "fieldtype": "Section Break"
+  },
+  {
+   "fieldname": "first_name",
+   "fieldtype": "Data",
+   "label": "first_name"
+  },
+  {
+   "fieldname": "last_name",
+   "fieldtype": "Data",
+   "label": "last_name"
+  },
+  {
+   "fieldname": "birthday_date",
+   "fieldtype": "Date",
+   "label": "birthday_date"
+  },
+  {
+   "fieldname": "identity",
+   "fieldtype": "Data",
+   "label": "identity"
+  },
+  {
+   "fieldname": "parent_name",
+   "fieldtype": "Data",
+   "label": "parent_name"
+  },
+  {
+   "fieldname": "parent_last",
+   "fieldtype": "Data",
+   "label": "parent_last"
+  },
+  {
+   "fieldname": "offer",
+   "fieldtype": "Link",
+   "label": "offer",
+   "options": "offer"
+  },
+  {
+   "fieldname": "number",
+   "fieldtype": "Data",
+   "label": "number"
+  },
+  {
+   "fieldname": "email",
+   "fieldtype": "Data",
+   "label": "email"
+  },
+  {
+   "fieldname": "password",
+   "fieldtype": "Data",
+   "label": "password"
+  }
+ ],
+ "index_web_pages_for_search": 1,
+ "links": [
+  {
+   "link_doctype": "offer",
+   "link_fieldname": "offer_name"
+  }
+ ],
+ "modified": "2024-05-06 04:47:26.826716",
+ "modified_by": "Administrator",
+ "module": "aalimni",
+ "name": "student",
+ "owner": "Administrator",
+ "permissions": [
+  {
+   "create": 1,
+   "delete": 1,
+   "email": 1,
+   "export": 1,
+   "print": 1,
+   "read": 1,
+   "report": 1,
+   "role": "System Manager",
+   "share": 1,
+   "write": 1
+  }
+ ],
+ "sort_field": "modified",
+ "sort_order": "DESC",
+ "states": []
+}

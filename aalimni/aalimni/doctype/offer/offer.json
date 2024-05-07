@@ -1,0 +1,111 @@
+{
+ "actions": [],
+ "allow_rename": 1,
+ "autoname": "field:offer_name",
+ "creation": "2024-05-06 00:56:12.240212",
+ "doctype": "DocType",
+ "engine": "InnoDB",
+ "field_order": [
+  "section_break_jzsr",
+  "offer_name",
+  "start_date",
+  "end_date",
+  "image",
+  "level",
+  "enrollemnt_max",
+  "price",
+  "enrollement_count",
+  "subjects",
+  "details"
+ ],
+ "fields": [
+  {
+   "fieldname": "section_break_jzsr",
+   "fieldtype": "Section Break"
+  },
+  {
+   "fieldname": "offer_name",
+   "fieldtype": "Data",
+   "label": "offer_name",
+   "unique": 1
+  },
+  {
+   "fieldname": "start_date",
+   "fieldtype": "Date",
+   "label": "start_date"
+  },
+  {
+   "fieldname": "end_date",
+   "fieldtype": "Date",
+   "label": "end_date"
+  },
+  {
+   "fieldname": "image",
+   "fieldtype": "Attach Image",
+   "label": "offer_image"
+  },
+  {
+   "fieldname": "level",
+   "fieldtype": "Select",
+   "label": "level",
+   "options": "1\u00e9re\n2\u00e9me\n3\u00e9me\n4\u00e9me\n5\u00e9me\n6\u00e9me"
+  },
+  {
+   "fieldname": "enrollemnt_max",
+   "fieldtype": "Int",
+   "label": "enrollement_max"
+  },
+  {
+   "fieldname": "price",
+   "fieldtype": "Float",
+   "label": "offer_price"
+  },
+  {
+   "fieldname": "enrollement_count",
+   "fieldtype": "Int",
+   "label": "enrollement_count "
+  },
+  {
+   "fieldname": "subjects",
+   "fieldtype": "Table MultiSelect",
+   "label": "subjects",
+   "options": "subject"
+  },
+  {
+   "fieldname": "details",
+   "fieldtype": "Table MultiSelect",
+   "label": "details",
+   "options": "details"
+  }
+ ],
+ "index_web_pages_for_search": 1,
+ "links": [
+  {
+   "link_doctype": "student",
+   "link_fieldname": "identity"
+  }
+ ],
+ "modified": "2024-05-06 04:50:13.207940",
+ "modified_by": "Administrator",
+ "module": "aalimni",
+ "name": "offer",
+ "naming_rule": "By fieldname",
+ "owner": "Administrator",
+ "permissions": [
+  {
+   "create": 1,
+   "delete": 1,
+   "email": 1,
+   "export": 1,
+   "print": 1,
+   "read": 1,
+   "report": 1,
+   "role": "System Manager",
+   "share": 1,
+   "write": 1
+  }
+ ],
+ "sort_field": "modified",
+ "sort_order": "DESC",
+ "states": []
+}

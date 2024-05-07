@@ -1,0 +1,82 @@
+{
+ "actions": [],
+ "allow_rename": 1,
+ "autoname": "format:{subject}-{offer}",
+ "creation": "2024-05-06 04:17:03.122739",
+ "doctype": "DocType",
+ "engine": "InnoDB",
+ "field_order": [
+  "section_break_wmi8",
+  "date",
+  "start",
+  "end",
+  "teacher",
+  "offer",
+  "subject"
+ ],
+ "fields": [
+  {
+   "fieldname": "section_break_wmi8",
+   "fieldtype": "Section Break"
+  },
+  {
+   "fieldname": "date",
+   "fieldtype": "Select",
+   "label": "date",
+   "options": "lundi\nmardi\nmercredi\njeudi\nvendredi"
+  },
+  {
+   "fieldname": "start",
+   "fieldtype": "Time",
+   "label": "start"
+  },
+  {
+   "fieldname": "end",
+   "fieldtype": "Time",
+   "label": "end"
+  },
+  {
+   "fieldname": "teacher",
+   "fieldtype": "Link",
+   "label": "teacher",
+   "options": "teacher"
+  },
+  {
+   "fieldname": "offer",
+   "fieldtype": "Link",
+   "label": "offer",
+   "options": "offer"
+  },
+  {
+   "fieldname": "subject",
+   "fieldtype": "Link",
+   "label": "subject",
+   "options": "subjects"
+  }
+ ],
+ "index_web_pages_for_search": 1,
+ "links": [],
+ "modified": "2024-05-06 13:09:21.681184",
+ "modified_by": "Administrator",
+ "module": "aalimni",
+ "name": "session",
+ "naming_rule": "Expression",
+ "owner": "Administrator",
+ "permissions": [
+  {
+   "create": 1,
+   "delete": 1,
+   "email": 1,
+   "export": 1,
+   "print": 1,
+   "read": 1,
+   "report": 1,
+   "role": "System Manager",
+   "share": 1,
+   "write": 1
+  }
+ ],
+ "sort_field": "modified",
+ "sort_order": "DESC",
+ "states": []
+}

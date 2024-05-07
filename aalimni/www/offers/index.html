@@ -1,0 +1,75 @@
+
+<link href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-icons/1.7.0/font/bootstrap-icons.min.css" rel="stylesheet">
+
+{% extends 'templates/base.html' %}
+
+{% block title %}My Offers{% endblock %}
+
+{% block content %}
+<style>
+    .offer-img {
+        width: 300px;
+        height: 200px; 
+        object-fit: cover; 
+    }
+</style>
+<style>
+    body {
+        background-image: url('https://t3.ftcdn.net/jpg/04/12/82/16/360_F_412821610_95RpjzPXCE2LiWGVShIUCGJSktkJQh6P.jpg');
+        background-size: cover;
+        background-repeat: no-repeat;
+        background-attachment: fixed;
+    }
+    .card-container {
+        margin-top: 100; 
+    }
+</style>
+<div class="container">
+    <div class="row"> 
+        <div class="col-md-12 offer-title text-center">
+            <h2 style="color: rgb(124, 171, 233);">Our Offers</h2>
+            <h5>Start your path to success. Enjoy the best educational content and continuous support throughout the school year through our <span class="text-primary">various offers</span>.</h5> 
+        </div> 
+    </div>
+</div>
+<style>
+    .card {
+        background-color: transparent;
+        border-color: rgb(135, 137, 236);
+        border-width: 4px; 
+    }
+</style>          
+<div class="container card-container"> 
+    <div class="row">
+        {% for result in resultats %}
+        <div class="col-md-4">
+            <div class="card">
+                <img src="{{ result.offer_image }}" class="card-img-top offer-img" alt="{{ result.offer_name }}">
+                <div class="card-body">
+                    <h5 class="card-title">{{ result.offer_name }}</h5>
+                    <p class="card-text"><strong>Subjects:</strong> {{ result.subjects }}</p>
+                    <p class="card-text"><strong>Start Date:</strong> {{ result.start_date }}</p>
+                    <p class="card-text"><strong>End Date:</strong> {{ result.end_date }}</p>
+                    <p class="card-text"><strong>level:</strong> {{ result.level }}</p>
+                    <p class="card-text"><strong>Details:</strong></p>
+                    <ul class="list-unstyled">
+                 
+                            {% if result.details_names %}
+                                {% for detail in result.details_names.split(', ') %}
+                                    <li><i class="bi bi-check2"  style="color: green;"></i> {{ detail }}</li>
+                                {% endfor %}
+                            {% endif %}
+                      
+                    </ul>
+                    
+                    <br>
+                    <a href="/sign_up_student" class="btn btn-primary">Sign_up</a>
+
+
+                </div>
+            </div>
+        </div>
+        {% endfor %}
+    </div>
+</div>
+{% endblock %}

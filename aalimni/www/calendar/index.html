@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Emploi du temps</title>
+    <link rel="stylesheet" href="index.css">
+</head>
+<body>
+    <label for="offer-select">Sélectionner une offre :</label>
+    <select id="offer-select">
+        <option value="">Toutes les offres</option>
+        {% set unique_offers = [] %}
+        {% for schedule in schedules %}
+            {% if schedule.offer not in unique_offers %}
+                <option value="{{ schedule.offer }}">{{ schedule.offer }}</option>
+                {% set _ = unique_offers.append(schedule.offer) %}
+            {% endif %}
+        {% endfor %}
+    </select>
+
+    <div id="schedules">
+        {% for offer in unique_offers %}
+            <div id="{{ offer }}" class="schedule-container" style="display: none;">
+                <h3>{{ offer }}</h3>
+                <table class="schedule">
+                    <thead>
+                        <tr>
+                            <th></th>
+                            <th>Lundi</th>
+                            <th>Mardi</th>
+                            <th>Mercredi</th>
+                            <th>Jeudi</th>
+                            <th>Vendredi</th>
+                        </tr>
+                    </thead>
+                    <tbody id="{{ offer }}-schedule-body" class="schedule-body">
+                        {% for time in ["16:00", "17:00", "18:00", "19:00", "20:00"] %}
+                    <tr>
+                    <td class="time-column">{{ time }}</td>
+                     {% for day in ["lundi", "mardi", "mercredi", "jeudi", "vendredi"] %}
+                   <td {% if schedule[day][time] and schedule[day][time].offer == offer %} class="occupied" {% endif %}>
+                       {% if schedule[day][time] and schedule[day][time].offer == offer %}
+                      {{ schedule[day][time].subject }} <br> {{ schedule[day][time].teacher }}<br>{{ schedule[day][time].start_time }}-{{ schedule[day][time].end_time }}
+                      {% endif %}
+                  </td>
+                   {% endfor %}
+                   </tr>
+                 {% endfor %}
+                    </tbody>
+                </table>
+            </div>
+        {% endfor %}
+    </div>
+
+    <script src="index.js"></script>
+</body>
+</html>

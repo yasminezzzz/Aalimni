@@ -1,0 +1,50 @@
+{% extends 'templates/base.html' %}
+
+{% block title %}Liste des Enseignants{% endblock %}
+
+{% block content %}
+<style>
+    .teacher-img {
+        width: 200px; 
+        height: 200px; 
+        object-fit: cover; 
+    }
+
+    .blue-text {
+        color: blue;
+        font-weight: bold;
+        text-align: center;
+    }
+    body {
+        background-image: url('https://t3.ftcdn.net/jpg/04/12/82/16/360_F_412821610_95RpjzPXCE2LiWGVShIUCGJSktkJQh6P.jpg');
+        background-size: cover;
+        background-repeat: no-repeat;
+        background-attachment: fixed;
+    }
+    .card {
+        background-color: transparent;
+        border-color: rgb(135, 137, 236);
+        border-width: 4px; 
+    }
+</style>
+<div class="container">
+    <h2 class="blue-text">our teachers</h2>
+    
+    <h4 class="text-center">We're excited to share our knowledge and assist you in achieving your academic goals in an inclusive and interactive learning environment. Expect engaging lessons and ongoing support to guide you towards success.</h4>
+    <p class="text-center" style="color: grey;">The genisus Platform strives to attract the cream of competent professors and teachers from all over the country to accompany your children on their journey towards success.</p>
+
+    <div class="row">
+        {% for teacher in teachers %}
+        <div class="col-md-4">
+            <div class="card">
+                <img src="{{ teacher.image }}" class="card-img-top teacher-img" alt="{{ teacher.first_name }} {{ teacher.last_name }}">
+                <div class="card-body">
+                    <h5 class="card-title">{{ teacher.first_name }} {{ teacher.last_name }}</h5>
+                    <p class="card-text"><strong>Spécialité:</strong> {{ teacher.speciality }}</p>
+                </div>
+            </div>
+        </div>
+        {% endfor %}
+    </div>
+</div>
+{% endblock %}

@@ -1,0 +1,37 @@
+{
+ "actions": [],
+ "allow_rename": 1,
+ "creation": "2024-05-06 01:07:43.981034",
+ "doctype": "DocType",
+ "editable_grid": 1,
+ "engine": "InnoDB",
+ "field_order": [
+  "section_break_ouv7",
+  "subject_name"
+ ],
+ "fields": [
+  {
+   "fieldname": "section_break_ouv7",
+   "fieldtype": "Section Break"
+  },
+  {
+   "fieldname": "subject_name",
+   "fieldtype": "Link",
+   "in_list_view": 1,
+   "label": "subject_name",
+   "options": "subjects"
+  }
+ ],
+ "index_web_pages_for_search": 1,
+ "istable": 1,
+ "links": [],
+ "modified": "2024-05-06 03:08:16.442356",
+ "modified_by": "Administrator",
+ "module": "aalimni",
+ "name": "subject",
+ "owner": "Administrator",
+ "permissions": [],
+ "sort_field": "modified",
+ "sort_order": "DESC",
+ "states": []
+}
