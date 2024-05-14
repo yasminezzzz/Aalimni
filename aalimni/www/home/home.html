@@ -1,0 +1,308 @@
+
+{% extends 'templates/base.html' %}
+
+{% block content %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Overlay Image with Text</title>
+<style>
+  /* Styles communs pour les cartes */
+  body {
+    background-color: #f7d9e0; /* Couleur de fond */
+  }
+
+  .card {
+    border-radius: 20px;
+    overflow: hidden;
+    animation: revealStar 1.5s ease-in-out forwards;
+  }
+
+  @keyframes revealStar {
+    0% {
+      transform: scale(0);
+    }
+    100% {
+      transform: scale(1);
+    }
+  }
+
+  .card img {
+    width: 100%; /* Réduire la largeur de l'image */
+    height: auto;
+    display: block;
+    object-fit: cover;
+  }
+  
+  .card .overlay {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(91, 98, 121, 0.5);
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: flex-start;
+    color: rgb(255, 255, 255);
+    padding: 50px;
+    box-sizing: border-box;
+    text-align: left;
+    opacity: 0.9;
+  }
+  
+  /* Style du bouton */
+  .btn {
+    background-color: rgb(85, 216, 107);
+    color: white;
+    padding: 10px 20px;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    text-decoration: none;
+  }
+  
+  .btn:hover {
+    background-color: deepskyblue;
+  }
+
+  .full-page-card {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+    animation-delay: 0s; 
+  }
+
+  /* Style pour la deuxième section contenant les cartes de détails */
+  .details-container {
+    display: none;
+    justify-content: center;
+    align-items: center;
+    flex-wrap: wrap;
+    padding: 20px;
+    opacity: 0; /* On défini l'opacité à 0 pour les cacher au début */
+  }
+
+  .details-container.show {
+    display: flex;
+    animation: fadeIn 1s forwards; /* Animation pour afficher les détails avec opacité */
+  }
+
+  .details-container .card {
+    width: 200px; 
+    height: 200px;
+    margin: 0 10px 10px 0;
+    border-radius: 10px;
+    overflow: hidden;
+    box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2);
+    transition: 0.3s;
+    display: inline-block;
+  }
+
+  .details-container .card img {
+    width: 50%; /* Définir la largeur de l'image à 100% */
+    height: 50%; /* Définir la hauteur de l'image à 100% */
+    object-fit: cover; /* Redimensionner l'image pour remplir le conteneur tout en conservant son ratio d'aspect */
+    object-position: center; /* Centrer l'image horizontalement et verticalement dans le conteneur */
+}
+
+  .details-container .card-container {
+    text-align: center;
+    padding: 10px; /* Ajouter de la marge autour du contenu de la carte */
+  }
+  
+  .details-page {
+    background-color: #f8f3f7; /* Fond rose claire */
+    padding: 20px;
+  }
+
+  .details-container .card-title {
+    font-size: 16px;
+    font-weight: bold;
+    margin-bottom: 10px;
+    position: absolute;
+    bottom: 15px;
+    left: 10px;
+    right: 10px;
+  }
+  
+  .goals-container {
+    display: none;
+    justify-content: center;
+    align-items: center;
+    flex-wrap: wrap;
+    padding: 20px;
+    opacity: 0; /* On défini l'opacité à 0 pour les cacher au début */
+  }
+
+  .goals-container.show {
+    display: flex;
+    animation: fadeIn 1s forwards; /* Animation pour afficher les objectifs avec opacité */
+  }
+
+  .goal-card {
+    width: 150px;
+    height: 150px;
+    margin: 10px;
+    background-color: #f5f5f5;
+    border-radius: 10px;
+    box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2);
+    transition: 0.3s;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
+
+  .goal-card img {
+    max-width: 50%;
+    max-height: 50%;
+    object-fit: contain;
+  }
+  .goals-container .card-title {
+    font-size: 14px;
+    font-weight: bold;
+  
+  }
+
+  .goal-card-container {
+  background-color: #ffffff; /* Remplacez la couleur par celle que vous souhaitez */
+}
+
+  h1 {
+    text-align: center;
+    color: blue;
+    margin-top: 50px;
+    opacity: 0; /* On défini l'opacité à 0 pour les cacher au début */
+    animation: fadeIn 1s forwards; /* Animation pour afficher les h1 avec opacité */
+  }
+
+  /* Animation pour afficher les éléments avec opacité */
+  @keyframes fadeIn {
+    0% {
+      opacity: 0;
+    }
+    100% {
+      opacity: 1;
+    }
+  }
+</style>
+</head>
+<body>
+
+<!-- Première carte en pleine page -->
+<div class="full-page-card">
+  <div class="card">
+    <img src=" /files/soutien-scolaire.jpg" alt="Background Image">
+    <div class="overlay">
+      <h2>aalimni_academy<br>is an educational platform Online in Saudi Arabia</h2>
+     
+      <p>Enjoy online support lessons in all subjects and at various levels.</p>
+      <a href="sign_up_student" class="btn">Sign Up Now</a>
+    </div>
+  </div>
+</div>
+
+<!-- Deuxième section contenant les cartes de détails -->
+<div class="details-page">
+ <h1 class="details-heading"> What do we offer in our offers?</h1>
+  <div class="details-container">
+    {% for detail in details %}
+    <div class="card">
+      <img src="{{ detail.image }}" alt="{{ detail.details_name }}">
+      <div class="card-container">
+        <h2 class="card-title">{{ detail.details_name }}</h2>
+      </div>
+    </div>
+    {% endfor %}
+  </div>
+</div>
+
+<!-- Troisième section contenant les cartes des objectifs -->
+<div class="goals-page">
+  <h1 class="goals-heading">What are our goals?</h1><br>
+
+  <div class="goals-container">
+    {% for goal in goals %}
+    <div class="goal-card">
+      <img src="{{ goal.goals_image }}" alt="{{ goal.gaols_name }}">
+      <div class="card-container">
+        <h2 class="card-title">{{ goal.gaols_name }}</h2>
+      </div>
+    </div>
+    {% endfor %}
+  </div>
+</div><div class="discover-offers">
+  <h1 class="goals-heading">explore the materials?</h1><br>
+
+  <div class="container">
+    <!-- Première ligne de cartes -->
+    <div class="row">
+        <div class="card" style="background-color: #f2f2f2; width: 300px; height: 200px; margin-right: 20px; margin-bottom: 20px;">
+            <h6 style="text-align: center; margin-top: 20px;">Mathématiques</h6>
+            <p style="padding: 0 20px;">De la plus simple à la plus complexe, dérivée, deux inconnus, exponentielle, ...</p>
+        </div>
+
+        <div class="card" style="background-color: #f2f2f2; width: 300px; height: 200px; margin-right: 20px;">
+            <h6 style="text-align: center; margin-top: 20px;">SVT (Sciences de la Vie et de la Terre)</h6>
+            <p style="padding: 0 20px;">Reproduction humaine, génétique, ...</p>
+        </div>
+
+        <div class="card" style="background-color: #f2f2f2; width: 300px; height: 200px; margin-right: 20px;">
+            <h6 style="text-align: center; margin-top: 20px;">Physique</h6>
+            <p style="padding: 0 20px;">Masse molaire, bobine, pile de concentration, RC, condensateur, ...</p>
+        </div>
+    </div>
+    <!-- Deuxième ligne de cartes -->
+    <div class="row">
+        <div class="card" style="background-color: #f2f2f2; width: 300px; height: 200px; margin-right: 20px;">
+            <h6 style="text-align: center; margin-top: 20px;">Physique</h6>
+            <p style="padding: 0 20px;">Masse molaire, bobine, pile de concentration, RC, condensateur, ...</p>
+        </div>
+
+        <div class="card" style="background-color: #f2f2f2; width: 300px; height: 200px; margin-right: 20px;">
+            <h6 style="text-align: center; margin-top: 20px;">Physique</h6>
+            <p style="padding: 0 20px;">Masse molaire, bobine, pile de concentration, RC, condensateur, ...</p>
+        </div>
+
+        <div class="card" style="background-color: #f2f2f2; width: 300px; height: 200px; margin-right: 20px;">
+            <h6 style="text-align: center; margin-top: 20px;">Physique</h6>
+            <p style="padding: 0 20px;">Masse molaire, bobine, pile de concentration, RC, condensateur, ...</p>
+        </div>
+    </div>
+</div>
+
+
+<script>
+  // Attendre 1 seconde avant d'afficher le titre des détails
+  setTimeout(function() {
+    document.querySelector('.details-heading').classList.add('show');
+  }, 1000);
+  
+  // Attendre 2 secondes avant d'afficher les détails eux-mêmes
+  setTimeout(function() {
+    document.querySelector('.details-container').classList.add('show');
+  }, 2000);
+
+  // Attendre 3 secondes avant d'afficher le titre des objectifs
+  setTimeout(function() {
+    document.querySelector('.goals-heading').classList.add('show');
+  }, 3000);
+
+  // Attendre 4 secondes avant d'afficher les objectifs
+  setTimeout(function() {
+    document.querySelector('.goals-container').classList.add('show');
+  }, 4000);
+  setTimeout(function() {
+    document.querySelector('.container').classList.add('show');
+  },6000);
+</script>
+
+
+</body>
+</html>
+{% endblock %}

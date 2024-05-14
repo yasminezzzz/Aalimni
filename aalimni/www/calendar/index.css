@@ -30,3 +30,25 @@ body {
 .occupied {
     background-color: #2eb7cf; /* Mauve */
 }
+#offer-select {
+    border: none; /* Supprime le cadre */
+    background-color: transparent; /* Rend le fond transparent */
+    font-size: inherit; /* Garde la taille de la police similaire au reste de la page */
+    /* Ajoutez d'autres styles selon vos besoins */
+}
+
+.time-column { width: 100px; }
+.occupied-1600 { background-color: #a74b4b; color: white; } /* Rouge pour 16:00 */
+.occupied-1700 { background-color: #2f722f; color: white; } /* Vert pour 17:00 */
+.occupied-1800 { background-color: #2e9aa8; color: white; } /* Jaune pour 18:00 */
+.occupied-1900 { background-color: #400e81; color: white; } /* Bleu pour 19:00 */
+.occupied-2000 { background-color: #d45e0e; color: white; } /* Orange pour 20:00 */
+
+/* Mettre le texte en gras */
+.occupied-1600 strong,
+.occupied-1700 strong,
+.occupied-1800 strong,
+.occupied-1900 strong,
+.occupied-2000 strong {
+    font-weight: bold;
+}

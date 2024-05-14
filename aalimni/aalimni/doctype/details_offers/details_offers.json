@@ -7,7 +7,8 @@
  "engine": "InnoDB",
  "field_order": [
   "section_break_npi7",
-  "details_name"
+  "details_name",
+  "image"
  ],
  "fields": [
   {
@@ -19,11 +20,16 @@
    "fieldtype": "Data",
    "label": "details_name",
    "unique": 1
+  },
+  {
+   "fieldname": "image",
+   "fieldtype": "Attach Image",
+   "label": "image"
   }
  ],
  "index_web_pages_for_search": 1,
  "links": [],
- "modified": "2024-05-06 04:00:11.989279",
+ "modified": "2024-05-08 16:43:07.322730",
  "modified_by": "Administrator",
  "module": "aalimni",
  "name": "details_offers",

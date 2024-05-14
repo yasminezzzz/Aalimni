@@ -1,36 +1,36 @@
 {
  "actions": [],
  "allow_rename": 1,
- "autoname": "field:subject_name",
- "creation": "2024-05-06 01:07:56.137428",
+ "creation": "2024-05-08 22:25:44.894053",
  "doctype": "DocType",
  "engine": "InnoDB",
  "field_order": [
-  "subject_name",
-  "image"
+  "section_break_wcgz",
+  "gaols_name",
+  "goals_image"
  ],
  "fields": [
   {
-   "fieldname": "subject_name",
-   "fieldtype": "Data",
-   "in_list_view": 1,
-   "label": "subject_name",
-   "reqd": 1,
-   "unique": 1
+   "fieldname": "section_break_wcgz",
+   "fieldtype": "Section Break"
   },
   {
-   "fieldname": "image",
+   "fieldname": "gaols_name",
+   "fieldtype": "Data",
+   "label": "gaols_name"
+  },
+  {
+   "fieldname": "goals_image",
    "fieldtype": "Attach Image",
-   "label": "image"
+   "label": "goals_image"
   }
  ],
  "index_web_pages_for_search": 1,
  "links": [],
- "modified": "2024-05-08 17:03:47.353956",
+ "modified": "2024-05-08 22:26:18.774582",
  "modified_by": "Administrator",
  "module": "aalimni",
- "name": "subjects",
- "naming_rule": "By fieldname",
+ "name": "goals",
  "owner": "Administrator",
  "permissions": [
   {
@@ -46,7 +46,6 @@
    "write": 1
   }
  ],
- "quick_entry": 1,
  "sort_field": "modified",
  "sort_order": "DESC",
  "states": []

@@ -1,0 +1,43 @@
+body {
+    background-color: #f7d9e0; /* Rose bébé */
+}
+
+.row {
+    display: flex;
+    flex-wrap: wrap; /* Permettre le retour à la ligne */
+    justify-content: space-between;
+    margin-bottom: 20px;
+    padding: 0 20px; /* Ajustement des marges horizontales */
+}
+
+.card {
+    flex-basis: calc(25% - 10px); /* Ajuster la largeur pour chaque carte */
+    max-height: 250px; /* Hauteur maximale pour les cartes */
+    background-color: white;
+    border: 1px solid #ccc;
+    border-radius: 8px;
+    overflow: hidden;
+    margin-bottom: 20px; /* Espacement vertical entre les cartes */
+    box-sizing: border-box; /* Inclure les marges dans le calcul de la largeur */
+}
+
+
+.card img {
+    width: 100%;
+    height: 150px; /* Hauteur fixe pour les images */
+    object-fit: cover;
+    border-bottom: 1px solid #ccc;
+}
+
+.card-info {
+    padding: 20px;
+}
+
+.card-info h6 {
+    margin: 0; /* Supprimer la marge du haut et du bas */
+}
+
+.card-info p {
+    margin-top: 10px; /* Espacement entre le titre et la description */
+    font-size: 14px; /* Taille de la police pour la description */
+}
