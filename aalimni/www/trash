@@ -3,60 +3,44 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Bar Chart</title>
-    <style>
-        .bar-chart {
-            width: 100%;
-            max-width: 600px;
-            margin: auto;
-        }
-
-        .bar {
-            width: 100%;
-            background-color: #f1f1f1;
-            margin: 10px 0;
-            border-radius: 5px;
-            overflow: hidden;
-            position: relative;
-        }
-
-        .bar span {
-            display: block;
-            height: 30px;
-            text-align: right;
-            line-height: 30px;
-            color: white;
-            padding-right: 10px;
-            border-radius: 5px 0 0 5px;
-        }
-
-        .bar-1 span {
-            width: 25%;
-            background-color: #4CAF50;
-        }
-
-        .bar-2 span {
-            width: 50%;
-            background-color: #FF9800;
-        }
-
-        .bar-3 span {
-            width: 75%;
-            background-color: #2196F3;
-        }
-
-        .bar-4 span {
-            width: 100%;
-            background-color: #F44336;
-        }
-    </style>
+    <title>Lesson Selection</title>
 </head>
 <body>
-    <div class="bar-chart">
-        <div class="bar bar-1"><span>25%</span></div>
-        <div class="bar bar-2"><span>50%</span></div>
-        <div class="bar bar-3"><span>75%</span></div>
-        <div class="bar bar-4"><span>100%</span></div>
+    <h1>Lesson Selection</h1>
+    
+    <div id="lesson-list">
+        <button onclick="showLessonDropdown()">Add Lesson</button>
+        <div id="lesson-dropdown" style="display: none;">
+            <select id="lesson-select">
+                <option value="">Select a Lesson</option>
+                {% for lesson in LESSONS %}
+                    <option value="{{ lesson.name }}">{{ lesson.name }}</option>
+                {% endfor %}
+            </select>
+            <button onclick="addSelectedLesson()">Add Selected Lesson</button>
+        </div>
+        <ul id="selected-lessons">
+            <!-- Selected lessons will be added here -->
+        </ul>
     </div>
+
+    <script>
+        function showLessonDropdown() {
+            var dropdown = document.getElementById('lesson-dropdown');
+            dropdown.style.display = 'block';
+        }
+
+        function addSelectedLesson() {
+            var lessonSelect = document.getElementById('lesson-select');
+            var selectedLesson = lessonSelect.value;
+            if (selectedLesson) {
+                var lessonItem = document.createElement('li');
+                lessonItem.textContent = selectedLesson;
+                document.getElementById('selected-lessons').appendChild(lessonItem); // Utilisation de getElementById pour sélectionner la liste des leçons
+            } else {
+                alert("Please select a lesson.");
+            }
+        }
+    </script>
 </body>
 </html>

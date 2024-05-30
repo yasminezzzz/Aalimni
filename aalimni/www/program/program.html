@@ -1,6 +1,7 @@
 {% extends 'templates/base.html' %}
 
 {% block content %}
+
 <div class="content">
     <h1>Program</h1>
     <div id="chapter-container">
@@ -36,125 +37,141 @@
     </div>
 </div>
 
-<style>
-.card {
-    border: 1px solid #ccc;
-    padding: 16px;
-    margin-top: 16px;
-    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
-    border-radius: 8px;
-    position: relative;
-    width: 300px;
-    height: 200px;
-}
-.card button {
-    position: absolute;
-    bottom: 10px;
-    right: 10px;
-    background: rgb(32, 119, 219);
-    color: white;
-    border: none;
-    border-radius: 5px;
-    cursor: pointer;
-}
-</style>
-
-<script>
-document.getElementById('add-chapter-btn').addEventListener('click', function() {
-    document.getElementById('chapter-form').style.display = 'block';
-});
-
-document.getElementById('show-chapter-btn').addEventListener('click', function() {
-    var chapterId = document.getElementById('chapter-select').value;
-    if (chapterId) {
-        var selectedChapters = JSON.parse(localStorage.getItem('selectedChapters')) || [];
-        if (!selectedChapters.includes(chapterId)) {
-            selectedChapters.push(chapterId);
-            localStorage.setItem('selectedChapters', JSON.stringify(selectedChapters));
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Lesson Selection</title>
+    <style>
+        .card {
+            border: 1px solid #ccc;
+            padding: 16px;
+            margin-top: 16px;
+            box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+            border-radius: 8px;
+            position: relative;
+            width: 300px;
+            height: 200px;
         }
-        displaySelectedChapters(selectedChapters);
-    } else {
-        alert('Please select a chapter');
-    }
-});
-
-function displaySelectedChapters(selectedChapters) {
-    var selectedChapterCards = document.getElementById('selected-chapter-cards');
-    selectedChapterCards.innerHTML = '';
-
-    selectedChapters.forEach(function(chapterId) {
-        var selectedChapter = document.querySelector('.chapter[data-chapter-id="' + chapterId + '"]');
-        if (selectedChapter) {
-            var card = document.createElement('div');
-            card.className = 'card';
-            card.innerHTML = `
-                <p>${selectedChapter.querySelector('p').innerText}</p>
-                <button onclick="removeChapter('${chapterId}')">&times;</button>
-                <button class="add-lesson-btn" onclick="showLessonOptions('${chapterId}')">Add Lesson</button>
-            `;
-            selectedChapterCards.appendChild(card);
+        .card button {
+            position: absolute;
+            bottom: 10px;
+            right: 10px;
+            background: rgb(32, 119, 219);
+            color: white;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
         }
-    });
+    </style>
+</head>
+<body>
+  
 
-    document.getElementById('chapter-form').style.display = 'none';
-    document.getElementById('chapter-select').value = '';
-}
+    <script>
+        document.getElementById('add-chapter-btn').addEventListener('click', function() {
+            document.getElementById('chapter-form').style.display = 'block';
+        });
 
-function removeChapter(chapterId) {
-    var selectedChapters = JSON.parse(localStorage.getItem('selectedChapters')) || [];
-    var updatedChapters = selectedChapters.filter(id => id !== chapterId);
-    localStorage.setItem('selectedChapters', JSON.stringify(updatedChapters));
-    displaySelectedChapters(updatedChapters);
-}
-
-function showLessonOptions(chapterId) {
-    var lessonOptions = document.getElementById('lesson-options');
-    lessonOptions.style.display = 'block';
-    var lessonSelect = document.getElementById('lesson-select');
-    lessonSelect.innerHTML = ''; // Clear previous lesson options
-    var selectedChapter = document.querySelector('.chapter[data-chapter-id="' + chapterId + '"]');
-    var lessons = JSON.parse(selectedChapter.dataset.lessons);
-    lessons.forEach(function(lesson) {
-        var option = document.createElement('option');
-        option.value = lesson.id;
-        option.textContent = lesson.name + ' - ' + lesson.percentchap + '%';
-        lessonSelect.appendChild(option);
-    });
-}
-
-function addSelectedLesson() {
-    var lessonSelect = document.getElementById('lesson-select');
-    var selectedLessonId = lessonSelect.value;
-    var selectedLesson = findLessonById(selectedLessonId);
-    if (selectedLesson) {
-        var selectedChapterCards = document.getElementById('selected-chapter-cards');
-        var lessonItem = document.createElement('div');
-        lessonItem.textContent = selectedLesson.name + ' - ' + selectedLesson.percentchap + '%';
-        selectedChapterCards.appendChild(lessonItem);
-    }
-    // Hide the lesson options
-    document.getElementById('lesson-options').style.display = 'none';
-}
-
-function findLessonById(lessonId) {
-    var chapters = JSON.parse(document.getElementById('chapter-container').dataset.chapters);
-    for (var i = 0; i < chapters.length; i++) {
-        var chapter = chapters[i];
-        for (var j = 0; j < chapter.lessons.length; j++) {
-            var lesson = chapter.lessons[j];
-            if (lesson.id === lessonId) {
-                return lesson;
+        document.getElementById('show-chapter-btn').addEventListener('click', function() {
+            var chapterId = document.getElementById('chapter-select').value;
+            if (chapterId) {
+                var selectedChapters = JSON.parse(localStorage.getItem('selectedChapters')) || [];
+                if (!selectedChapters.includes(chapterId)) {
+                    selectedChapters.push(chapterId);
+                    localStorage.setItem('selectedChapters', JSON.stringify(selectedChapters));
+                }
+                displaySelectedChapters(selectedChapters);
+            } else {
+                alert('Please select a chapter');
             }
-        }
-    }
-    return null;
-}
+        });
 
-window.onload = function() {
-    var selectedChapters = JSON.parse(localStorage.getItem('selectedChapters'));
-    if (selectedChapters) {
-        displaySelectedChapters(selectedChapters);
-    }
-};
-</script>
+        function displaySelectedChapters(selectedChapters) {
+            var selectedChapterCards = document.getElementById('selected-chapter-cards');
+            selectedChapterCards.innerHTML = '';
+
+            selectedChapters.forEach(function(chapterId) {
+                var selectedChapter = document.querySelector('.chapter[data-chapter-id="' + chapterId + '"]');
+                if (selectedChapter) {
+                    var card = document.createElement('div');
+                    card.className = 'card';
+                    card.innerHTML = `
+                        <p>${selectedChapter.querySelector('p').innerText}</p>
+                        <button onclick="removeChapter('${chapterId}')">&times;</button>
+                        <button class="add-lesson-btn" onclick="showLessonOptions('${chapterId}')">Add Lesson</button>
+                    `;
+                    selectedChapterCards.appendChild(card);
+                }
+            });
+
+            document.getElementById('chapter-form').style.display = 'none';
+            document.getElementById('chapter-select').value = '';
+        }
+
+        function removeChapter(chapterId) {
+            var selectedChapters = JSON.parse(localStorage.getItem('selectedChapters')) || [];
+            var updatedChapters = selectedChapters.filter(id => id !== chapterId);
+            localStorage.setItem('selectedChapters', JSON.stringify(updatedChapters));
+            displaySelectedChapters(updatedChapters);
+        }
+
+        function showLessonOptions(chapterId) {
+            var lessonOptions = document.getElementById('lesson-options');
+            lessonOptions.style.display = 'block';
+            var lessonSelect = document.getElementById('lesson-select');
+            lessonSelect.innerHTML = ''; // Clear previous lesson options
+            
+            // Fetch lessons for the selected chapter
+            var selectedChapter = document.querySelector('.chapter[data-chapter-id="' + chapterId + '"]');
+            var lessons = JSON.parse(selectedChapter.dataset.lessons);
+            
+            // Populate the lesson options dropdown
+            lessons.forEach(function(lesson) {
+                var option = document.createElement('option');
+                option.value = lesson.id;
+                option.textContent = lesson.name;
+                lessonSelect.appendChild(option);
+            });
+        }
+
+        function addSelectedLesson() {
+            var lessonSelect = document.getElementById('lesson-select');
+            var selectedLessonId = lessonSelect.value;
+            var selectedLesson = findLessonById(selectedLessonId);
+            if (selectedLesson) {
+                var selectedChapterCards = document.getElementById('selected-chapter-cards');
+                var lessonItem = document.createElement('div');
+                lessonItem.textContent = selectedLesson.name;
+                selectedChapterCards.appendChild(lessonItem);
+            }
+            // Hide the lesson options
+            document.getElementById('lesson-options').style.display = 'none';
+        }
+
+        function findLessonById(lessonId) {
+            var chapters = JSON.parse(document.getElementById('chapter-container').dataset.chapters);
+            for (var i = 0; i < chapters.length; i++) {
+                var chapter = chapters[i];
+                for (var j = 0; j < chapter.lessons.length; j++) {
+                    var lesson = chapter.lessons[j];
+                    if (lesson.id === lessonId) {
+                        return lesson;
+                    }
+                }
+            }
+            return null;
+        }
+
+        window.onload = function() {
+            var selectedChapters = JSON.parse(localStorage.getItem('selectedChapters'));
+            if (selectedChapters) {
+                displaySelectedChapters(selectedChapters);
+            }
+        };
+    </script>
+</body>
+</html>
+
 {% endblock %}
