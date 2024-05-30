@@ -226,4 +226,10 @@ app_license = "mit"
 # default_log_clearing_doctypes = {
 # 	"Logging DocType Name": 30  # days to retain logs
 # }
+# Location: aalimni/aalimni/hooks.py
+# Location: aalimni/aalimni/hooks.py
+
+
+
+# Hook into the login process to execute the after_login function
 

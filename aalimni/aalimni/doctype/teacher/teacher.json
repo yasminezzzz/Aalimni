@@ -11,7 +11,12 @@
   "last_name",
   "image",
   "speciality",
-  "description"
+  "description",
+  "email",
+  "password",
+  "user",
+  "role",
+  "secret"
  ],
  "fields": [
   {
@@ -43,11 +48,43 @@
    "fieldname": "description",
    "fieldtype": "Data",
    "label": "description"
+  },
+  {
+   "fieldname": "email",
+   "fieldtype": "Data",
+   "label": "email"
+  },
+  {
+   "fieldname": "password",
+   "fieldtype": "Password",
+   "label": "password"
+  },
+  {
+   "fieldname": "user",
+   "fieldtype": "Link",
+   "label": "User",
+   "options": "User"
+  },
+  {
+   "fieldname": "role",
+   "fieldtype": "Link",
+   "label": "Role",
+   "options": "Role"
+  },
+  {
+   "fieldname": "secret",
+   "fieldtype": "Data",
+   "label": "secret"
   }
  ],
  "index_web_pages_for_search": 1,
- "links": [],
- "modified": "2024-05-06 04:20:35.677203",
+ "links": [
+  {
+   "link_doctype": "User",
+   "link_fieldname": "email"
+  }
+ ],
+ "modified": "2024-05-23 21:46:13.195576",
  "modified_by": "Administrator",
  "module": "aalimni",
  "name": "teacher",
@@ -63,6 +100,18 @@
    "read": 1,
    "report": 1,
    "role": "System Manager",
+   "share": 1,
+   "write": 1
+  },
+  {
+   "create": 1,
+   "delete": 1,
+   "email": 1,
+   "export": 1,
+   "print": 1,
+   "read": 1,
+   "report": 1,
+   "role": "Teacher",
    "share": 1,
    "write": 1
   }

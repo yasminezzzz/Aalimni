@@ -45,12 +45,6 @@
    "label": "offer_image"
   },
   {
-   "fieldname": "level",
-   "fieldtype": "Select",
-   "label": "level",
-   "options": "1\u00e9re\n2\u00e9me\n3\u00e9me\n4\u00e9me\n5\u00e9me\n6\u00e9me"
-  },
-  {
    "fieldname": "enrollemnt_max",
    "fieldtype": "Int",
    "label": "enrollement_max"
@@ -76,6 +70,12 @@
    "fieldtype": "Table MultiSelect",
    "label": "details",
    "options": "details"
+  },
+  {
+   "fieldname": "level",
+   "fieldtype": "Select",
+   "label": "level",
+   "options": "1 \u00e9re ann\u00e9e\n2 \u00e9me ann\u00e9e\n3 \u00e9me ann\u00e9e\n4 \u00e9me ann\u00e9e\n5 \u00e9me ann\u00e9e\n6 \u00e9me ann\u00e9e"
   }
  ],
  "index_web_pages_for_search": 1,
@@ -85,7 +85,7 @@
    "link_fieldname": "identity"
   }
  ],
- "modified": "2024-05-06 04:50:13.207940",
+ "modified": "2024-05-26 01:25:51.443437",
  "modified_by": "Administrator",
  "module": "aalimni",
  "name": "offer",

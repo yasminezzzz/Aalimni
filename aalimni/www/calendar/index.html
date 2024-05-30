@@ -1,55 +1,85 @@
 {% extends 'templates/base.html' %}
 
 {% block content %}
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Emploi du temps</title>
-    <link rel="stylesheet" href="index.css">
- 
-</head>
-<body>
-    <label for="offer-select">Time table off :</label>
-    <select id="offer-select">
-        <option value="">Toutes les offres</option>
+<div class="label-container">
+    <label for="offer-select">Time table offers:</label>
+    <div class="offer-options">
+        <span class="offer-option all-offers active">All offers</span>
         {% set unique_offers = [] %}
         {% for schedule in schedules %}
             {% if schedule.offer not in unique_offers %}
-                <option value="{{ schedule.offer }}">{{ schedule.offer }} </option>
+                <span class="offer-option">{{ schedule.offer }}</span>
                 {% set _ = unique_offers.append(schedule.offer) %}
             {% endif %}
         {% endfor %}
-    </select>
+    </div>
+</div>
 
-    <div id="schedules">
-        <div id="all-schedules" class="schedule-container">
-            <h3>Tous les emplois du temps</h3>
+<div id="schedules">
+    <div id="all-schedules" class="schedule-container" style="display: block;">
+        <h3>All schedules</h3>
+        <table class="schedule">
+            <thead>
+                <tr>
+                    <th></th>
+                    <th>Monday</th>
+                    <th>Tuesday</th>
+                    <th>Wednesday</th>
+                    <th>Thursday</th>
+                    <th>Friday</th>
+                </tr>
+            </thead>
+            <tbody id="all-schedules-body" class="schedule-body">
+                {% for time in ["16:00", "17:00", "18:00", "19:00", "20:00"] %}
+                    <tr>
+                        <td class="time-column">{{ time }}</td>
+                        {% for day in ["lundi", "mardi", "mercredi", "jeudi", "vendredi"] %}
+                            <td class="{% if time == "16:00" or time == "18:00" or time == "20:00" %}empty-16{% elif time == "17:00" or time == "19:00" %}empty-17{% endif %}">
+                                {% for schedule in schedules %}
+                                    {% if schedule.date == day and schedule.start_time == time %}
+                                        <div class="session-detail occupied-{{ time.replace(':', '') }}">
+                                            <strong>{{ schedule.offer }}</strong>: <br>
+                                            {{ schedule.subject }} <br>
+                                            <strong>{{ schedule.start_time }}</strong>-<strong>{{ schedule.end_time }}</strong>
+                                        </div>
+                                    {% endif %}
+                                {% endfor %}
+                            </td>
+                        {% endfor %}
+                    </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+    </div>
+
+    {% for offer in unique_offers %}
+        <div id="{{ offer }}" class="schedule-container">
+            <h3>{{ offer }}</h3>
             <table class="schedule">
                 <thead>
                     <tr>
                         <th></th>
-                        <th>Lundi</th>
-                        <th>Mardi</th>
-                        <th>Mercredi</th>
-                        <th>Jeudi</th>
-                        <th>Vendredi</th>
+                        <th>Monday</th>
+                        <th>Tuesday</th>
+                        <th>Wednesday</th>
+                        <th>Thursday</th>
+                        <th>Friday</th>
                     </tr>
                 </thead>
-                <tbody id="all-schedules-body" class="schedule-body">
+                <tbody id="{{ offer }}-schedule-body" class="schedule-body">
                     {% for time in ["16:00", "17:00", "18:00", "19:00", "20:00"] %}
                         <tr>
                             <td class="time-column">{{ time }}</td>
                             {% for day in ["lundi", "mardi", "mercredi", "jeudi", "vendredi"] %}
-                                <td {% if schedule[day][time] %} class="occupied-{{ time.replace(':', '') }}" {% endif %}>
-                                    {% if schedule[day][time] %}
-                                        <span style="color: white;">
-                                            <strong>{{ schedule[day][time].offer }}</strong>: <br>
-                                            {{ schedule[day][time].subject }} <br>
-                                            <strong>{{ schedule[day][time].start_time }}</strong>-<strong>{{ schedule[day][time].end_time }}</strong>
-                                        </span>
-                                    {% endif %}
+                                <td class="{% if time == "16:00" or time == "18:00" or time == "20:00" %}empty-16{% elif time == "17:00" or time == "19:00" %}empty-17{% endif %}">
+                                    {% for schedule in schedules %}
+                                        {% if schedule.date == day and schedule.start_time == time and schedule.offer == offer %}
+                                            <div class="session-detail occupied-{{ time.replace(':', '') }}">
+                                                <strong>{{ schedule.subject }}</strong> <br>
+                                                {{ schedule.start_time }}-{{ schedule.end_time }}
+                                            </div>
+                                        {% endif %}
+                                    {% endfor %}
                                 </td>
                             {% endfor %}
                         </tr>
@@ -57,44 +87,146 @@
                 </tbody>
             </table>
         </div>
-        {% for offer in unique_offers %}
-            <div id="{{ offer }}" class="schedule-container" style="display: none;">
-                <h3>{{ offer }}</h3>
-                <table class="schedule">
-                    <thead>
-                        <tr>
-                            <th></th>
-                            <th>Lundi</th>
-                            <th>Mardi</th>
-                            <th>Mercredi</th>
-                            <th>Jeudi</th>
-                            <th>Vendredi</th>
-                        </tr>
-                    </thead>
-                    <tbody id="{{ offer }}-schedule-body" class="schedule-body">
-                        {% for time in ["16:00", "17:00", "18:00", "19:00", "20:00"] %}
-                            <tr>
-                                <td class="time-column">{{ time }}</td>
-                                {% for day in ["lundi", "mardi", "mercredi", "jeudi", "vendredi"] %}
-                                    <td {% if schedule[day][time] and schedule[day][time].offer == offer %} class="occupied-{{ time.replace(':', '') }}" {% endif %}>
-                                        {% if schedule[day][time] and schedule[day][time].offer == offer %}
-                                            <span style="color: white;">
-                                                <strong>{{ schedule[day][time].subject }}</strong> <br>
-                                                {{ schedule[day][time].start_time }}-{{ schedule[day][time].end_time }}
-                                            </span>
-                                        {% endif %}
-                                    </td>
-                                {% endfor %}
-                            </tr>
-                        {% endfor %}
-                    </tbody>
-                </table>
-            </div>
-        {% endfor %}
-    </div>
+    {% endfor %}
+</div>
+<style>
+    .label-container {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        margin-bottom: 20px;
+    }
 
-    <script src="index.js"></script>
-   
-</body>
-</html>
+    .offer-options {
+        display: flex;
+        flex-wrap: wrap;
+        margin-left: 10px;
+        justify-content: center;
+    }
+
+    .offer-option {
+        margin-right: 5px;
+        margin-bottom: 5px;
+        cursor: pointer;
+        text-align: center;
+        padding: 5px 10px;
+    }
+
+    .offer-option.all-offers {
+        color: rgb(12, 9, 9);
+    }
+
+    .offer-option:hover {
+        background-color: #9e598d;
+        color: rgb(10, 6, 6);
+    }
+
+    .schedule-container {
+        display: none;
+    }
+
+    .schedule {
+        width: 90%;
+        margin: 0 auto; /* Centre horizontalement le tableau */
+        border-collapse: collapse;
+        text-align: center;
+        font-size: 14px; /* Taille de police réduite */
+    }
+
+    .schedule th, .schedule td {
+        border: 1px solid #ddd;
+        padding: 3px; /* Réduction du padding */
+        vertical-align: top;
+        height: 70px;
+        width: 50px; /* Hauteur automatique */
+    }
+
+    .schedule th {
+        background-color: #f2f2f2;
+    }
+
+    .session-detail {
+        margin-bottom: 2px; /* Réduction de la marge */
+        padding: 4px; /* Réduction du padding */
+        border-radius: 4px; /* Réduction du rayon des bords */
+    }
+
+    .occupied-1600 { background-color: #52d3d3; color: white; }
+    .occupied-1700 { background-color: #78e278; color: white; }
+    .occupied-1800 { background-color: #e66cdb; color: white; }
+    .occupied-1900 { background-color: #9d78cc; color: white; }
+    .occupied-2000 { background-color: #b2d859; color: white; }
+
+    .time-column {
+        font-weight: bold;
+    }
+
+    .empty-16, .empty-18, .empty-20 {
+        background-color: #ccc;
+    }
+
+    .empty-17, .empty-19 {
+        background-color: #fff;
+    }
+</style>
+
+<script>
+document.addEventListener('DOMContentLoaded', function() {
+    var offerOptions = document.querySelectorAll('.offer-option');
+
+    offerOptions.forEach(function(option) {
+        option.addEventListener('click', function() {
+            offerOptions.forEach(function(opt) {
+                opt.classList.remove('active');
+            });
+            this.classList.add('active');
+            
+            var selectedOffer = this.textContent;
+            var scheduleContainers = document.querySelectorAll('.schedule-container');
+            var allSchedulesContainer = document.getElementById('all-schedules');
+
+            scheduleContainers.forEach(function(container) {
+                if (selectedOffer === 'All offers') {
+                    container.style.display = 'block';
+                } else {
+                    if (container.id === selectedOffer) {
+                        container.style.display = 'block';
+                    } else {
+                        container.style.display = 'none';
+                    }
+                }
+            });
+
+            if (selectedOffer === 'All offers') {
+                allSchedulesContainer.style.display = 'block';
+            } else {
+                allSchedulesContainer.style.display = 'none';
+            }
+        });
+    });
+
+    function adjustSlotHeights() {
+        var scheduleRows = document.querySelectorAll('.schedule-body tr');
+
+        scheduleRows.forEach(function(row) {
+            var slots = row.querySelectorAll('td');
+            var maxHeight = 0;
+
+            slots.forEach(function(slot) {
+                var height = slot.scrollHeight;
+                if (height > maxHeight) {
+                    maxHeight = height;
+                }
+            });
+
+            slots.forEach(function(slot) {
+                slot.style.height = maxHeight + 'px';
+            });
+        });
+    }
+
+    window.addEventListener('load', adjustSlotHeights);
+    window.addEventListener('resize', adjustSlotHeights);
+});
+</script>
 {% endblock %}

@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Chapters and Lessons</title>
+</head>
+<body>
+
+<h1>Chapters and Lessons</h1>
+
+<!-- Bouton pour charger les chapitres -->
+<button onclick="loadChapters()">Load Chapters</button>
+
+<!-- Div pour afficher les chapitres -->
+<div id="chapters"></div>
+
+<!-- Div pour afficher les leçons -->
+<div id="lessons"></div>
+
+<script>
+// Fonction pour charger les chapitres depuis l'API
+function loadChapters() {
+    fetch('/api/method/aalimni.aalimni.api.get_chapters')
+        .then(response => response.json())
+        .then(data => {
+            const chaptersDiv = document.getElementById('chapters');
+            chaptersDiv.innerHTML = '<h2>Chapters</h2>';
+            data.forEach(chapter => {
+                chaptersDiv.innerHTML += `<div onclick="loadLessons('${chapter.name}')">${chapter.name}</div>`;
+            });
+        })
+        .catch(error => console.error('Error loading chapters:', error));
+}
+
+// Fonction pour charger les leçons pour un chapitre donné depuis l'API
+function loadLessons(chapter) {
+    fetch(`/api/method/aalimni.aalimni.api.get_lessons?chapter=${chapter}`)
+        .then(response => response.json())
+        .then(data => {
+            const lessonsDiv = document.getElementById('lessons');
+            lessonsDiv.innerHTML = '<h2>Lessons</h2>';
+            data.forEach(lesson => {
+                lessonsDiv.innerHTML += `<div>${lesson.lesson_name}</div>`;
+            });
+        })
+        .catch(error => console.error('Error loading lessons:', error));
+}
+</script>
+
+</body>
+</html>

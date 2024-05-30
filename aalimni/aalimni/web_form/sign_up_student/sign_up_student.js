@@ -46,18 +46,23 @@ frappe.ready(function() {
                             field.set_value('');
                         } else {
                             var new_enrollement_count = (offer_doc.enrollement_count || 0) + 1;
-                            frappe.call({
-                                method: 'frappe.client.set_value',
-                                args: {
-                                    doctype: 'offer',
-                                    name: value,
-                                    fieldname: 'enrollement_count',
-                                    value: new_enrollement_count
-                                },
-                                callback: function(response) {
-                                    frappe.msgprint('welcome to our offer!!');
-                                }
-                            });
+                            if (new_enrollement_count <= offer_doc.enrollement_max) {
+                                frappe.call({
+                                    method: 'frappe.client.set_value',
+                                    args: {
+                                        doctype: 'offer',
+                                        name: value,
+                                        fieldname: 'enrollement_count',
+                                        value: new_enrollement_count
+                                    },
+                                    callback: function(response) {
+                                        frappe.msgprint('Welcome to our offer!!');
+                                    }
+                                });
+                            } else {
+                                frappe.msgprint('Sorry, the offer is completed. You cannot choose this offer.');
+                                field.set_value('');
+                            }
                         }
                     }
                 }

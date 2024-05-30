@@ -1,36 +1,39 @@
 {
  "actions": [],
  "allow_rename": 1,
- "autoname": "field:subject_name",
- "creation": "2024-05-06 01:07:56.137428",
+ "autoname": "format:group-{offer}",
+ "creation": "2024-05-20 05:40:03.786701",
  "doctype": "DocType",
  "engine": "InnoDB",
  "field_order": [
-  "subject_name",
-  "subject_image"
+  "section_break_k20n",
+  "email",
+  "offer"
  ],
  "fields": [
   {
-   "fieldname": "subject_name",
-   "fieldtype": "Data",
-   "in_list_view": 1,
-   "label": "subject_name",
-   "reqd": 1,
-   "unique": 1
+   "fieldname": "section_break_k20n",
+   "fieldtype": "Section Break"
   },
   {
-   "fieldname": "subject_image",
-   "fieldtype": "Attach Image",
-   "label": "subject_image"
+   "fieldname": "email",
+   "fieldtype": "Data",
+   "label": "email"
+  },
+  {
+   "fieldname": "offer",
+   "fieldtype": "Link",
+   "label": "offer",
+   "options": "offer"
   }
  ],
  "index_web_pages_for_search": 1,
  "links": [],
- "modified": "2024-05-19 02:25:39.090255",
+ "modified": "2024-05-20 05:45:17.007040",
  "modified_by": "Administrator",
  "module": "aalimni",
- "name": "subjects",
- "naming_rule": "By fieldname",
+ "name": "group",
+ "naming_rule": "Expression",
  "owner": "Administrator",
  "permissions": [
   {
@@ -46,8 +49,7 @@
    "write": 1
   }
  ],
- "quick_entry": 1,
- "sort_field": "modified",
+ "sort_field": "creation",
  "sort_order": "DESC",
  "states": []
 }

@@ -1,0 +1,36 @@
+{
+ "actions": [],
+ "allow_rename": 1,
+ "creation": "2024-05-26 03:34:37.351915",
+ "doctype": "DocType",
+ "editable_grid": 1,
+ "engine": "InnoDB",
+ "field_order": [
+  "section_break_1ca0",
+  "document_name"
+ ],
+ "fields": [
+  {
+   "fieldname": "section_break_1ca0",
+   "fieldtype": "Section Break"
+  },
+  {
+   "fieldname": "document_name",
+   "fieldtype": "Link",
+   "label": "document_name",
+   "options": "documents"
+  }
+ ],
+ "index_web_pages_for_search": 1,
+ "istable": 1,
+ "links": [],
+ "modified": "2024-05-26 03:36:11.243751",
+ "modified_by": "Administrator",
+ "module": "aalimni",
+ "name": "document",
+ "owner": "Administrator",
+ "permissions": [],
+ "sort_field": "creation",
+ "sort_order": "DESC",
+ "states": []
+}

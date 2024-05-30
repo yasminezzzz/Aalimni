@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+</head>
+<body>
+
+
+<div id="meet"></div>
+
+<script src='https://meet.jit.si/external_api.js'></script>
+<script>
+    const domain = "meet.jit.si"; // Remplacez par votre domaine Jitsi Meet si vous avez une installation locale
+    const options = {
+        roomName: "MyMeetingRoom",  // Changez ceci pour le nom de la salle de réunion désirée
+        width: 1200,
+        height: 1000,
+        parentNode: document.querySelector('#meet'),
+        configOverwrite: {},
+        interfaceConfigOverwrite: {}
+    };
+    const api = new JitsiMeetExternalAPI(domain, options);
+</script>
+
+</body>
+</html>

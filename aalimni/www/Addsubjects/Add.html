@@ -1,0 +1,154 @@
+{% extends 'templates/base.html' %}
+
+{% block content %}
+<div class="sidebar">
+  <ul>
+    <li><a href="/me">My Profile</a></li>
+    <li><a href="/jitsimeet">Direct session</a></li>
+    <li><a href="/TeacherTime/TeacherTime">My Time Table</a></li>
+    <li><a href="/Addsubjects/Add">Add My Lessons</a></li>
+    <li><a href="">My Students Group</a></li>
+  </ul>
+</div>
+<div class="content">
+    <h1>Add your lessons</h1>
+    <div class="card-container">
+        {% for session in sessions %}
+            <div class="card" data-offer="{{ session.offer }}" data-subject="{{ session.name }}">
+                <img src="{{ session.subject_image }}" alt="{{ session.name }}" class="card-image">
+                <div class="card-title">{{ session.name }}</div>
+                <div class="card-title">{{ session.offer}}</div>
+            </div>
+        {% endfor %}
+    </div>
+    <div id="offer-name" style="margin-top: 20px;"></div>
+    <div id="chapters-container"></div> <!-- Container to display chapters -->
+</div>
+<form id="add-lesson-form" action="/program/program" method="GET">
+    <input type="hidden" id="offer-input" name="offer">
+    <input type="hidden" id="subject-input" name="subject">
+</form>
+</div>
+<style>
+ .sidebar {
+    height: calc(100vh - 100px);
+    width: 200px;
+    position: fixed;
+    top: 50px;
+    bottom: 200px;
+    left: 0px;
+    background-color: #2192be;
+    overflow-x: hidden;
+    padding-top: 20px;
+  }
+  
+  .sidebar ul {
+    list-style-type: none;
+    padding: 0;
+  }
+  
+  .sidebar ul li {
+    padding: 10px 15px;
+  }
+  
+  .sidebar ul li a {
+    text-decoration: none;
+    color: #fff;
+  }
+  
+  .sidebar ul li a:hover {
+    background-color: #e0dbe0;
+  }
+  
+  .content {
+    margin-left: 200px;
+    padding: 20px;
+  }
+  
+  .card-container {
+    display: flex;
+    flex-wrap: wrap;
+  }
+  
+  .card {
+      border: 1px solid #ddd;
+      border-radius: 4px;
+      padding: 16px;
+      margin: 16px;
+      box-shadow: 2px 2px 8px rgba(0, 0, 0, 0.1);
+      display: inline-block;
+      width: 400px;
+      vertical-align: top;
+      cursor: pointer;
+      text-align: center;
+      height:150px;
+  }
+  
+  .card-title {
+      font-size: 1.0em;
+      font-weight: bold;
+      color: rgb(98, 148, 131);
+  }
+  
+  .card-title1 {
+      font-size: 1.2em;
+      font-weight: bold;
+      color: rgb(69, 69, 97);
+  }
+  
+  .card-content {
+      margin-top: 0px;
+  }
+  
+  .card-image {
+      width: 20%;
+      height: 70px;
+      object-fit: cover;
+      border-bottom: 1px solid #ddd;
+      margin-bottom: 8px;
+  }
+  
+  .add-button {
+      background-color: #61c4dd;
+      color: white;
+      border: none;
+      text-align: center;
+      text-decoration: none;
+      display: inline-block;
+      font-size: 20px;
+      margin-top: 10px;
+      cursor: pointer;
+      height: 40px;
+      width: 120px;
+  }
+  
+  #offer-name {
+      font-size: 1.2em;
+      font-weight: bold;
+  }
+</style>
+
+<script>
+document.addEventListener('DOMContentLoaded', function() {
+    const cards = document.querySelectorAll('.card');
+    const offerInput = document.getElementById('offer-input');
+    const subjectInput = document.getElementById('subject-input');
+    const form = document.getElementById('add-lesson-form');
+    const chaptersContainer = document.getElementById('chapters-container');
+
+    cards.forEach(card => {
+        card.addEventListener('click', function() {
+            const offer = this.getAttribute('data-offer');
+            const subject = this.getAttribute('data-subject');
+            
+            // Set the values of hidden inputs
+            offerInput.value = offer;
+            subjectInput.value = subject;
+            
+            // Submit the form
+            form.submit();
+        });
+    });
+});
+</script>
+{% endblock %}

@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Bar Chart</title>
+    <style>
+        .bar-chart {
+            width: 100%;
+            max-width: 600px;
+            margin: auto;
+        }
+
+        .bar {
+            width: 100%;
+            background-color: #f1f1f1;
+            margin: 10px 0;
+            border-radius: 5px;
+            overflow: hidden;
+            position: relative;
+        }
+
+        .bar span {
+            display: block;
+            height: 30px;
+            text-align: right;
+            line-height: 30px;
+            color: white;
+            padding-right: 10px;
+            border-radius: 5px 0 0 5px;
+        }
+
+        .bar-1 span {
+            width: 25%;
+            background-color: #4CAF50;
+        }
+
+        .bar-2 span {
+            width: 50%;
+            background-color: #FF9800;
+        }
+
+        .bar-3 span {
+            width: 75%;
+            background-color: #2196F3;
+        }
+
+        .bar-4 span {
+            width: 100%;
+            background-color: #F44336;
+        }
+    </style>
+</head>
+<body>
+    <div class="bar-chart">
+        <div class="bar bar-1"><span>25%</span></div>
+        <div class="bar bar-2"><span>50%</span></div>
+        <div class="bar bar-3"><span>75%</span></div>
+        <div class="bar bar-4"><span>100%</span></div>
+    </div>
+</body>
+</html>

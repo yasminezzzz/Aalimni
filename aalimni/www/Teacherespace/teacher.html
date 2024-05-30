@@ -1,0 +1,63 @@
+{% extends 'templates/base.html' %}
+
+{% block content %}
+<div class="sidebar">
+  <ul>
+    <li><a href="/me">My Profile</a></li>
+    <li><a href="/jitsimeet">Direct session</a></li>
+    <li><a href="/TeacherTime/TeacherTime">My Time Table</a></li>
+    <li><a href="/Addsubjects/Add">Add My Lessons</a></li>
+    <li><a href="">My Students Group</a></li>
+  </ul>
+</div>
+<div class="content">
+
+
+</div>
+<style>
+.sidebar {
+  height: calc(100vh - 100px); /* Ajustement de la hauteur en fonction de la taille de la fenêtre */
+  width: 200px;
+  position: fixed;
+  top: 50px; /* Hauteur du navbar */
+  bottom: 200px; /* Hauteur du footer */
+  left: 0px;
+  background-color: #2192be;
+  overflow-x: hidden;
+  padding-top: 20px;
+}
+
+.sidebar ul {
+  list-style-type: none;
+  padding: 0;
+}
+
+.sidebar ul li {
+  padding: 10px 15px;
+}
+
+.sidebar ul li a {
+  text-decoration: none;
+  color: #fff;
+}
+
+.sidebar ul li a:hover {
+  background-color: #e0dbe0;
+}
+
+.content {
+  margin-left: 200px;
+  padding: 20px;
+}
+
+.teacher {
+  margin-bottom: 20px;
+}
+
+.teacher img {
+  width: 100px;
+  height: 100px;
+  object-fit: cover;
+}
+</style>
+{% endblock %}

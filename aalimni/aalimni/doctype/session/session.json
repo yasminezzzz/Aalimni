@@ -12,7 +12,8 @@
   "end",
   "teacher",
   "offer",
-  "subject"
+  "subject",
+  "levels"
  ],
  "fields": [
   {
@@ -52,11 +53,17 @@
    "fieldtype": "Link",
    "label": "subject",
    "options": "subjects"
+  },
+  {
+   "fieldname": "levels",
+   "fieldtype": "Table MultiSelect",
+   "label": "level",
+   "options": "level"
   }
  ],
  "index_web_pages_for_search": 1,
  "links": [],
- "modified": "2024-05-06 13:09:21.681184",
+ "modified": "2024-05-26 01:15:29.716834",
  "modified_by": "Administrator",
  "module": "aalimni",
  "name": "session",

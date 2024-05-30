@@ -11,8 +11,6 @@
         height: 200px; 
         object-fit: cover; 
     }
-</style>
-<style>
     body {
         background-image: url('https://t3.ftcdn.net/jpg/04/12/82/16/360_F_412821610_95RpjzPXCE2LiWGVShIUCGJSktkJQh6P.jpg');
         background-size: cover;
@@ -20,7 +18,94 @@
         background-attachment: fixed;
     }
     .card-container {
-        margin-top: 100px; /* Ajout de 'px' */
+        margin-top: 100px;
+    }
+    .card {
+        background-color: rgb(180, 216, 220); 
+        border-color: rgb(135, 137, 236);
+        border-width: 4px; 
+        position: relative; 
+        height: 700px;
+        display: flex;
+        flex-direction: column;
+    }
+    .card-body {
+        display: flex;
+        flex-direction: column;
+        flex-grow: 1;
+    }
+    .best-genius-card {
+        background-color: rgb(243, 216, 220); 
+        border-color: rgb(180, 72, 157); 
+    }
+    .best-genius-c::before {
+        content: "Best Genius"; 
+        position: absolute;
+        top: -20px;
+        left: 50%;
+        transform: translateX(-50%);
+        background-color: rgb(180, 72, 157); 
+        color: white;
+        padding: 5px 10px; 
+        border-radius: 5px;
+    }
+    .silver-card {
+        background-color: white; 
+        border-color: rgb(236, 83, 185); 
+    }
+    .silver-c::before {
+        content: "For Little Genius"; 
+        position: absolute;
+        top: -20px;
+        left: 50%;
+        transform: translateX(-50%);
+        background-color: rgb(72, 180, 81); 
+        color: white; 
+        padding: 5px 10px; 
+        border-radius: 10px;
+    }
+    .fade-in {
+        opacity: 0;
+        animation: fadeInAnimation ease 1s forwards;
+    }
+    @keyframes fadeInAnimation {
+        0% {
+            opacity: 0;
+        }
+        100% {
+            opacity: 1;
+        }
+    }
+   
+    .btn-custom {
+        background-color: rgb(218, 69, 218);
+        color: white;
+        width: 70%; /* Make the button larger */
+        padding: 6px 0;
+    
+        display: flex;
+        justify-content: center; /* Center the button horizontally */
+        margin-top: 30px;  /* Adjust padding for larger button */
+    }
+    .btn1-primary {
+        background-color: blue;
+        color: white;
+        width: 70%; /* Make the button larger */
+        padding: 6px 0;
+    
+        display: flex;
+        justify-content: center; /* Center the button horizontally */
+        margin-top: 60px; /* Adjust padding for larger button */
+    }
+    .btn2-primary {
+        background-color: rgb(121, 190, 218); /* Change color to green */
+        color: rgb(253, 248, 248);
+        width: 70%; /* Make the button larger */
+        padding: 6px 0;
+       
+        display: flex;
+        justify-content: center; /* Center the button horizontally */
+        margin-top: 10px;   /* Adjust padding for larger button */
     }
 </style>
 <div class="container">
@@ -31,68 +116,32 @@
         </div> 
     </div>
 </div>
-<style>
-    .card {
-        background-color: rgb(180, 216, 220); /* Arrière-plan bleu par défaut */
-        border-color: rgb(135, 137, 236);
-        border-width: 4px; 
-        position: relative; 
-        height:700px ;/* Ajout */
-    }
-    .best-genius-card {
-        background-color: rgb(243, 216, 220); /* Arrière-plan rose */
-        border-color: rgb(180, 72, 157); /* Bordure rose */
-    }
-    .best-genius-c::before {
-        content: "Best Genius"; 
-        position: absolute;
-        top: -20px; /* Décalage vers le haut */
-        left: 50%;
-        transform: translateX(-50%);
-        background-color: rgb(180, 72, 157); /* Fond rose */
-        color: white; /* Texte blanc */
-        padding: 5px 10px; /* Espacement autour du texte */
-        border-radius: 5px; /* Coins arrondis */
-    }
-    
-    /* Animation de fondu enchaîné */
-    .fade-in {
-        opacity: 0;
-        animation: fadeInAnimation ease 1s forwards;
-    }
-    
-    @keyframes fadeInAnimation {
-        0% {
-            opacity: 0;
-        }
-        100% {
-            opacity: 1;
-        }
-    }
-</style>          
 <div class="container card-container"> 
     <div class="row">
         {% for result in resultats %}
-        <div class="col-md-4 fade-in"> <!-- Ajout de la classe 'fade-in' -->
-            <div class="card {% if result.offer_name == 'best genius' %}best-genius-card{% endif %}">
+        <div class="col-md-4 fade-in">
+            <div class="card {% if result.offer_name == '' %}best-genius-card{% elif result.offer_name == 'For Little Genius' %}silver-card{% endif %}">
                 <img src="{{ result.offer_image }}" class="card-img-top offer-img" alt="{{ result.offer_name }}">
                 <div class="card-body">
                     <h5 class="card-title">{{ result.offer_name }}</h5>
-                    <p class="card-text"><strong>Subjects:</strong> {{ result.subjects }}</p>
                     <p class="card-text"><strong>Start Date:</strong> {{ result.start_date }}</p>
                     <p class="card-text"><strong>End Date:</strong> {{ result.end_date }}</p>
-                    <p class="card-text"><strong>level:</strong> {{ result.level }}</p>
+                    <p class="card-text"><strong>Level:</strong> 
+                        
+                            {{ result.level }}
+                    
+                    </p>
                     <p class="card-text"><strong>Details: </strong></p>
                     <ul class="list-unstyled">
                         {% if result.details_names %}
                             {% for detail in result.details_names.split(', ') %}
-                                <li><i class="bi bi-check2"  style="color: green;"></i> {{ detail }}</li>
+                                <li><i class="bi bi-check2" style="color: green;"></i> {{ detail }}</li>
                             {% endfor %}
                         {% endif %}
                     </ul>
-                    
-                    <br>
-                    <a href="/sign_up_student" class="btn btn-primary">Sign_up</a>
+                    <div class="button-container">
+                        <a href="/sign_up_student" class="btn {% if result.offer_name == 'Together towards the model' %}btn-custom{% elif result.offer_name == 'For Little Genius' %}btn1-primary{% elif result.offer_name == 'Aalimni_offer' %}btn2-primary{% else %}btn-primary{% endif %}">Sign up</a>
+                    </div>
                 </div>
             </div>
         </div>

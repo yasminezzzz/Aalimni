@@ -1,54 +1,93 @@
-body {
-    font-family: Arial, sans-serif;
-    margin: 0;
-    padding: 0;
+.label-container {
+    display: flex;
+    align-items: center;
+    justify-content: center; /* Centrer les éléments horizontalement */
+    margin-bottom: 20px;
+}
+
+.offer-options {
+    display: flex;
+    flex-wrap: wrap;
+    margin-left: 10px;
+    justify-content: center; /* Centrer les options horizontalement */
+}
+
+.offer-option {
+    margin-right: 5px;
+    margin-bottom: 5px;
+    cursor: pointer;
+    text-align: center;
+    padding: 5px 10px; /* Ajout de padding pour une meilleure visibilité */
+}
+
+.offer-option.all-offers {
+ 
+    color: white;
+    position: relative; /* Permet d'ajouter la ligne en position absolue */
+}
+
+.offer-option.all-offers::after {
+    content: '';
+    position: absolute;
+    bottom: -3px; /* Positionne la ligne sous l'option */
+    left: 0;
+    width: 100%;
+   /* Épaisseur de la ligne */
+     /* Couleur de la ligne */
+}
+
+.offer-option:hover {
+    
+    color: white;
+}
+
+.offer-option:not(.all-offers):hover {
+    background-color: #9e598d;
+    color: white;
+}
+
+.schedule-container {
+    display: none;
 }
 
 .schedule {
     width: 100%;
     border-collapse: collapse;
+    text-align: center; /* Centrer le texte dans les cellules */
 }
 
 .schedule th, .schedule td {
     border: 1px solid #ddd;
     padding: 8px;
-    text-align: center;
 }
 
 .schedule th {
-    background-color: #f2f2f2;
+    background-color: #b62424;
+}
+
+.occupied-1600, .occupied-1700, .occupied-1800, .occupied-1900, .occupied-2000 {
+    background-color: #dff0d8;
 }
 
 .time-column {
-    width: 100px;
-}
-
-.available {
-    background-color: #eebbee; /* Vert */
-}
-
-.occupied {
-    background-color: #2eb7cf; /* Mauve */
-}
-#offer-select {
-    border: none; /* Supprime le cadre */
-    background-color: transparent; /* Rend le fond transparent */
-    font-size: inherit; /* Garde la taille de la police similaire au reste de la page */
-    /* Ajoutez d'autres styles selon vos besoins */
-}
-
-.time-column { width: 100px; }
-.occupied-1600 { background-color: #a74b4b; color: white; } /* Rouge pour 16:00 */
-.occupied-1700 { background-color: #2f722f; color: white; } /* Vert pour 17:00 */
-.occupied-1800 { background-color: #2e9aa8; color: white; } /* Jaune pour 18:00 */
-.occupied-1900 { background-color: #400e81; color: white; } /* Bleu pour 19:00 */
-.occupied-2000 { background-color: #d45e0e; color: white; } /* Orange pour 20:00 */
-
-/* Mettre le texte en gras */
-.occupied-1600 strong,
-.occupied-1700 strong,
-.occupied-1800 strong,
-.occupied-1900 strong,
-.occupied-2000 strong {
     font-weight: bold;
+    height: 30px;
+}
+
+.offer-option.all-offers {
+    position: relative; /* Position relative pour permettre le positionnement absolu de la ligne */
+    cursor: pointer;
+}
+
+.offer-option.all-offers::after {
+    content: ''; /* Ajout du contenu à l'aide de pseudo-éléments */
+    position: absolute; /* Position absolue par rapport à l'élément parent */
+    bottom: 0; /* Positionner en bas de l'élément parent */
+    left: 0; /* Positionner à partir du côté gauche */
+    width: 100%; /* Largeur de la ligne égale à celle de l'élément parent */
+    height: 2px; /* Hauteur de la ligne */
+    background-color: #c236b6; /* Couleur de la ligne */
+}
+.schedule td {
+    height: 50px; /* Hauteur fixe pour toutes les cellules */
 }

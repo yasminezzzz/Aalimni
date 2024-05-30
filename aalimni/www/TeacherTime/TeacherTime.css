@@ -1,0 +1,46 @@
+/* TeacherTime.css */
+
+/* Define colors for occupied slots */
+.occupied-1600 { background-color: #b43bae; color: white; }
+.occupied-1700, .occupied-2000 { background-color: #47af87; color: white; }
+.occupied-1800 { background-color: #5ad4ce; color: white; }
+.occupied-1900 { background-color: #ac5159; color: white; }
+
+/* Style for unoccupied slots */
+.unoccupied {
+  background-color: #fff; /* White color for unoccupied slots */
+  color: #000; /* Black text color */
+  font-weight: bold; /* Bold text */
+}
+
+/* Style for empty slots at 17:00 and 19:00 */
+.empty-gray {
+  background-color: #ccc; /* Gray color for empty slots */
+  color: #000; /* Black text color */
+  font-weight: bold; /* Bold text */
+}
+
+/* Center the table horizontally */
+.table-container {
+  display: flex;
+  justify-content: center; /* Center the table horizontally */
+  margin-top: 20px; /* Optional: Add some space above the table */
+}
+
+/* Style for the table */
+.table {
+  text-align: center; /* Center align text in table */
+  width: 100%; /* Set table width to 70% */
+  margin: 0 auto; /* Center the table within its container */
+}
+
+/* Style for table headers and cells */
+.table th, .table td {
+  text-align: center; /* Center align text in headers and cells */
+}
+
+/* Style for the current user message */
+.user-message {
+  text-align: center; /* Center the message */
+  font-weight: bold; /* Bold text */
+}

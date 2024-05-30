@@ -1,0 +1,101 @@
+{% extends 'templates/base.html' %}
+
+<link rel="stylesheet" type="text/css" href="/TeacherTime.css">
+
+{% block content %}
+<div class="sidebar">
+  <ul>
+    <li><a href="/me">My Profile</a></li>
+    <li><a href="/jitsimeet">Direct session</a></li>
+    <li><a href="/TeacherTime/TeacherTime">My Time Table</a></li>
+    <li><a href="/Addsubjects/Add">Add My Lessons</a></li>
+    <li><a href="/GroupStudent/GroupStudent">My Students Group</a></li>
+  </ul>
+</div>
+<div class="content">
+  <div id="currentUserMessage" class="user-message">{{ current_user_message }}</div>
+
+  <div id="schedule" class="table-container">
+    {% if schedule_by_day_and_time %}
+      <table class="table table-bordered">
+        <thead>
+          <tr>
+            <th></th>
+            <th>Monday</th>
+            <th>Tuesday</th>
+            <th>Wednesday</th>
+            <th>Thursday</th>
+            <th>Friday</th>
+          </tr>
+        </thead>
+        <tbody>
+          {% for time in ["16:00", "17:00", "18:00", "19:00", "20:00"] %}
+            <tr>
+              <td>{{ time }}</td>
+              {% for day in ["lundi", "mardi", "mercredi", "jeudi", "vendredi"] %}
+                {% set slot = schedule_by_day_and_time[day].get(time) %}
+                <td class="{% if slot %}occupied-{{ time|replace(':', '') }}{% else %}{% if time in ['17:00', '19:00'] %}empty-gray{% else %}unoccupied{% endif %}{% endif %}">
+                  {% if slot %}
+                    <strong>Offer:</strong><strong>{{ slot.offer }}</strong> 
+                    <strong>Subject:</strong><strong>  {{ slot.subject }}</strong> 
+                  {% else %}
+                    &nbsp;
+                  {% endif %}
+                </td>
+              {% endfor %}
+            </tr>
+          {% endfor %}
+        </tbody>
+      </table>
+    {% else %}
+      <p>No sessions found for the current user.</p>
+    {% endif %}
+  </div>
+</div>
+<style>
+.sidebar {
+  height: calc(100vh - 100px); /* Adjust height based on window size */
+  width: 200px;
+  position: fixed;
+  top: 50px; /* Navbar height */
+  bottom: 200px; /* Footer height */
+  left: 0px;
+  background-color: #2192be;
+  overflow-x: hidden;
+  padding-top: 20px;
+}
+
+.sidebar ul {
+  list-style-type: none;
+  padding: 0;
+}
+
+.sidebar ul li {
+  padding: 10px 15px;
+}
+
+.sidebar ul li a {
+  text-decoration: none;
+  color: #fff;
+}
+
+.sidebar ul li a:hover {
+  background-color: #e0dbe0;
+}
+
+.content {
+  margin-left: 200px;
+  padding: 20px;
+}
+
+.teacher {
+  margin-bottom: 20px;
+}
+
+.teacher img {
+  width: 100px;
+  height: 100px;
+  object-fit: cover;
+}
+</style>
+{% endblock %}

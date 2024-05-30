@@ -1,6 +1,7 @@
 {
  "actions": [],
  "allow_rename": 1,
+ "autoname": "format:{first_name}-{last_name}",
  "creation": "2024-05-06 00:56:25.918107",
  "doctype": "DocType",
  "engine": "InnoDB",
@@ -81,10 +82,11 @@
    "link_fieldname": "offer_name"
   }
  ],
- "modified": "2024-05-06 04:47:26.826716",
+ "modified": "2024-05-22 18:07:19.303898",
  "modified_by": "Administrator",
  "module": "aalimni",
  "name": "student",
+ "naming_rule": "Expression",
  "owner": "Administrator",
  "permissions": [
   {
